@@ -7,12 +7,15 @@
   "author": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json",
     "fix": "run-s -c fix:**",
     "fix:package-json": "prettier-package-json --write",
     "fix:prettier": "prettier --write .",
     "lint": "run-s -c lint:**",
     "lint:package-json": "prettier-package-json -l",
     "lint:prettier": "prettier --check .",
+    "lint:tsc": "tsc",
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
