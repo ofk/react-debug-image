@@ -10,9 +10,11 @@
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.build.json",
     "fix": "run-s -c fix:**",
+    "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:package-json": "prettier-package-json --write",
     "fix:prettier": "prettier --write .",
     "lint": "run-s -c lint:**",
+    "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:package-json": "prettier-package-json -l",
     "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc",
@@ -35,6 +37,10 @@
   "keywords": [],
   "lint-staged": {
     "package.json": "prettier-package-json --write",
-    "*.{md,json,html}": "prettier --write"
+    "*.{md,json,html}": "prettier --write",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix --ext .js,.jsx,.ts,.tsx",
+      "prettier --write"
+    ]
   }
 }
