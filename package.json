@@ -13,6 +13,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.build.json",
+    "dev": "parcel serve 'examples/index.html'",
     "fix": "run-s -c fix:**",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:package-json": "prettier-package-json --write",
