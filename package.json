@@ -13,6 +13,7 @@
     "lint": "run-s -c lint:**",
     "lint:package-json": "prettier-package-json -l",
     "lint:prettier": "prettier --check .",
+    "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
