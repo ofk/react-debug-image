@@ -1,18 +1,9 @@
 import { loadImage } from 'img-promise';
 import React, { useEffect, useMemo, useRef } from 'react';
 
-export type ImageSource =
-  | string
-  | HTMLImageElement
-  | HTMLCanvasElement
-  | HTMLVideoElement
-  | ImageBitmap
-  | ImageData
-  | CanvasRenderingContext2D;
-
 export const drawImageSource = async (
   canvas: HTMLCanvasElement,
-  source: ImageSource
+  source: unknown
 ): Promise<void> => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const ctx = canvas.getContext('2d')!;
@@ -44,8 +35,13 @@ export const drawImageSource = async (
     await drawImageSource(canvas, source.canvas);
     return;
   }
+  canvas.width = 0;
+  canvas.height = 0;
+  if (source == null) {
+    return;
+  }
   /* eslint-enable no-param-reassign */
-  throw new Error('Not support source');
+  console.warn('[react-debug-image] Not support source', source);
 };
 
 export interface ImageProps
@@ -53,7 +49,7 @@ export interface ImageProps
     React.CanvasHTMLAttributes<HTMLCanvasElement>,
     HTMLCanvasElement
   > {
-  source: ImageSource;
+  source: unknown;
 }
 
 export const Image: React.FC<ImageProps> = ({ source, width, height, style, ...props }) => {
