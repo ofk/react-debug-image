@@ -28,6 +28,9 @@
     "test": "jest"
   },
   "types": "dist/index.d.ts",
+  "dependencies": {
+    "img-promise": "^1.0.0"
+  },
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
